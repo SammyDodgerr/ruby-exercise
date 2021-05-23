@@ -74,7 +74,7 @@ Install dependencies:
 bundle install
 ```
 
-Run the rake task
+Run the rake task:
 ```
 bundle exec rake shipments:process[spec/fixtures/shipments.json]
 ```
