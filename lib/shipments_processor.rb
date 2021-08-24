@@ -14,12 +14,12 @@ class ShipmentsProcessor
     path = File.join(Dir.pwd, @filepath)
 
     file = File.open(path, "r")
-    JSON.parse(file.read)
-  ensure
+    JSON.parse(file.read).fetch("ORDERS").select{|item| item.fetch("O_ID") == item.fetch("OMS_ORDER_ID")}
+
+      ensure
     file&.close
   end
 end
 
 
 shipments_processor = ShipmentsProcessor.new(filepath: "spec/fixtures/shipments.json")
-puts(shipments_processor.call)

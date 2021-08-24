@@ -9,9 +9,10 @@ RSpec.describe ShipmentsProcessor do
         result = shipments_processor.call
 
         aggregate_failures do
-          expect(result).to be_instance_of(Hash)
-          expect(result).to have_key("ORDERS")
-          expect(result.fetch("ORDERS").length).to eq 3
+          expect(result).to be_instance_of(Array)
+        /  expect(result).to have_key("ORDERS") /
+         / expect(result.fetch("ORDERS")).to be_instance_of(Array) /
+          expect(result.length).to eq 2
         end
       end
     end
