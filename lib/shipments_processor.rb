@@ -1,8 +1,9 @@
 require "pathname"
+require 'json'
 
 class ShipmentsProcessor
   # @param filepath String - relative path to the shipments file to process
-  def initialize(filepath:)
+  def initialize(filepath: "spec/fixtures/shipments.json")
     @filepath = filepath
   end
 
@@ -13,8 +14,12 @@ class ShipmentsProcessor
     path = File.join(Dir.pwd, @filepath)
 
     file = File.open(path, "r")
-    file.read
+    JSON.parse(file.read)
   ensure
     file&.close
   end
 end
+
+
+shipments_processor = ShipmentsProcessor.new(filepath: "spec/fixtures/shipments.json")
+puts(shipments_processor.call)
